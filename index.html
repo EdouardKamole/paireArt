@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peter Paira | 3D Artist & Creative Director</title>
+    <title>Peter Paira | 3D Artist</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -308,143 +308,265 @@
             font-size: 1.2rem;
         }
         /* Portfolio Section */
-        .portfolio-grid {
+.portfolio {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 400px;
+    background: var(--secondary);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.portfolio-item:nth-child(1) { animation-delay: 0.1s; }
+.portfolio-item:nth-child(2) { animation-delay: 0.2s; }
+.portfolio-item:nth-child(3) { animation-delay: 0.3s; }
+.portfolio-item:nth-child(4) { animation-delay: 0.4s; }
+.portfolio-item:nth-child(5) { animation-delay: 0.5s; }
+.portfolio-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.portfolio-item:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-item:hover .portfolio-image {
+    transform: scale(1.15);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.7) 70%, transparent 100%);
+    transition: all 0.4s ease;
+    transform: translateY(20px);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    transform: translateY(0);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.98) 0%, rgba(0, 0, 0, 0.85) 70%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+.portfolio-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.portfolio-category {
+    color: var(--accent);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+}
+
+.portfolio-description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.4s ease 0.1s;
+}
+
+.portfolio-item:hover .portfolio-description {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .portfolio-item {
+        height: 350px;
+    }
+    
+    .portfolio-overlay {
+        padding: 1.5rem;
+    }
+    
+    .portfolio-title {
+        font-size: 1.3rem;
+    }
+    
+    .portfolio-description {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .portfolio-item {
+        height: 320px;
+    }
+}
+
+        .videos {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .videos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        .portfolio-item {
+
+        .video-item {
             position: relative;
-            border-radius: 10px;
+            border-radius: 16px;
             overflow: hidden;
-            height: 300px;
-            background: var(--secondary);
-            transition: var(--transition);
-            opacity: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            background: #000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            aspect-ratio: 16 / 9;
         }
-        .portfolio-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+
+        .video-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
         }
-        .portfolio-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        .portfolio-item:hover .portfolio-image {
-            transform: scale(1.1);
-        }
-        .portfolio-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            transition: var(--transition);
-        }
-        .portfolio-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-        .portfolio-category {
-            color: var(--accent);
-            font-size: 0.9rem;
-        }
-        /* Cinematic Section */
-        .cinematic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-        .cinematic-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 250px;
-            background: var(--secondary);
-            cursor: pointer;
-            opacity: 0;
-        }
-        
+
         .video-thumbnail {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            transition: opacity 0.3s ease;
         }
 
-        .cinematic-video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
+        .video-thumbnail.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
+
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
             display: flex;
-            justify-content: center;
             align-items: center;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        .cinematic-item:hover .video-overlay {
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
             opacity: 1;
+            visibility: visible;
         }
-        .play-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: var(--accent);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .play-button:hover {
-            transform: scale(1.1);
-        }
-        /* Creative Direction */
-        .creative-showcase {
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-        }
-        .creative-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
+
+        .video-overlay.hidden {
             opacity: 0;
+            visibility: hidden;
         }
-        .creative-item:nth-child(even) .creative-content {
-            order: 2;
+
+        .video-item:hover .video-overlay {
+            background: rgba(0, 0, 0, 0.6);
         }
-        .creative-item:nth-child(even) .creative-visual {
-            order: 1;
-        }
-        .creative-visual {
-            height: 400px;
-            background: var(--secondary);
-            border-radius: 10px;
+
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: var(--text-secondary);
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
-        .creative-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+
+        .play-button:hover {
+            background: #ffffff;
+            transform: scale(1.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
         }
-        .creative-content p {
-            margin-bottom: 1.5rem;
-            color: var(--text-secondary);
+
+        .play-button i {
+            font-size: 32px;
+            color: #667eea;
+            margin-left: 5px;
+        }
+
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            background: #000;
+        }
+
+        .video-player.active {
+            display: block;
+        }
+
+        .video-player::-webkit-media-controls-panel {
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
         }
         /* Process Section */
         .process-timeline {
@@ -704,6 +826,27 @@
             align-items: center;
             color: var(--accent);
         }
+        /* Resume Download */
+        .resume-download {
+            margin-top: 2rem;
+            text-align: center;
+        }
+        .resume-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        .resume-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+        }
         /* Footer */
         footer {
             background: var(--secondary);
@@ -814,12 +957,8 @@
         }
         /* Responsive */
         @media (max-width: 992px) {
-            .about, .creative-item, .contact {
+            .about, .contact {
                 grid-template-columns: 1fr;
-            }
-            .creative-item:nth-child(even) .creative-content,
-            .creative-item:nth-child(even) .creative-visual {
-                order: initial;
             }
             .process-timeline:before {
                 left: 30px;
@@ -834,6 +973,9 @@
             }
             .hero h1 {
                 font-size: 3rem;
+            }
+            .videos-grid {
+                grid-template-columns: 1fr;
             }
         }
         @media (max-width: 768px) {
@@ -891,9 +1033,6 @@
             .section-title {
                 font-size: 2.5rem;
             }
-            .cinematic-grid {
-                grid-template-columns: 1fr;
-            }
         }
     </style>
 </head>
@@ -907,8 +1046,7 @@
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#portfolio">Portfolio</a>
-            <a href="#cinematic">Cinematic</a>
-            <a href="#creative">Creative Direction</a>
+            <a href="#videos">Videos</a>
             <a href="#process">Process</a>
             <a href="#contact">Contact</a>
         </div>
@@ -925,20 +1063,18 @@
         <div class="mobile-nav-links">
             <a href="#about">About</a>
             <a href="#portfolio">Portfolio</a>
-            <a href="#cinematic">Cinematic</a>
-            <a href="#creative">Creative Direction</a>
+            <a href="#videos">Videos</a>
             <a href="#process">Process</a>
             <a href="#contact">Contact</a>
         </div>
     </div>
-
 
     <!-- Hero Section -->
     <section class="hero">
         <canvas id="hero-canvas"></canvas>
         <div class="hero-content">
             <h1>Welcome to My <span>3D World</span></h1>
-            <p>3D Artist • Creative Director • Cinematographer</p>
+            <p>3D Artist • Visual Designer • Digital Creator</p>
             <a href="#portfolio" class="cta-button">Enter My World</a>
         </div>
         <div class="scroll-indicator">
@@ -950,163 +1086,120 @@
     <section id="about" class="about">
         <div class="about-content">
             <h3 class="section-title">About Me</h3>
-            <p>I'm Peter Paira, a passionate 3D artist and creative director with over 8 years of experience in creating immersive digital experiences. My work spans across various industries including film, gaming, and interactive media.</p>
-            <p>I specialize in creating stunning 3D environments, character designs, and cinematic visuals that push the boundaries of digital art. My approach combines technical expertise with artistic vision to deliver compelling visual narratives.</p>
+            <p>I'm Peter Paira, a passionate 3D artist with over 8 years of experience in creating immersive digital experiences. My work spans across various industries including film, gaming, and interactive media.</p>
+            <p>I specialize in creating stunning 3D environments, character designs, and visual effects that push the boundaries of digital art. My approach combines technical expertise with artistic vision to deliver compelling visual narratives.</p>
             <p>When I'm not creating digital worlds, I'm exploring new techniques, mentoring aspiring artists, and staying at the forefront of emerging technologies in the 3D space.</p>
         </div>
         <div class="profile-container">
-    <div class="profile-image">
-        <img src="images/paire1-removebg-preview.png" alt="Your Profile Picture" />
-    </div>
-</div>
-
+            <div class="profile-image">
+                <img src="images/paire01.png" alt="Peter Paira" style="width: 100%; height: 100%; object-fit: cover;" />
+            </div>
+        </div>
     </section>
 
-<!-- Portfolio Section -->
+    <!-- Portfolio Section -->
 <section id="portfolio" class="portfolio">
     <h2 class="section-title">Portfolio</h2>
     <div class="portfolio-grid">
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=1000&q=80" alt="3D Robot Design" class="portfolio-image">
+            <img src="images/image1.jpg" alt="Vintage Radio Product Modeling" class="portfolio-image">
             <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Mech Warrior</h3>
-                <p class="portfolio-category">3D Character Design</p>
+                <h3 class="portfolio-title">Vintage Radio</h3>
+                <p class="portfolio-category">Product Modeling</p>
+                <p class="portfolio-description">Inspired by 1960s-1980s radios, reimagined for the modern world</p>
             </div>
         </div>
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1634767434285-9d8cbf5c77b5?w=1000&q=80" alt="3D Character Model" class="portfolio-image">
+            <img src="images/image2.jpg" alt="Vintage Radio Product Texturing and Lighting" class="portfolio-image">
             <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Cyber Samurai</h3>
-                <p class="portfolio-category">Character Modeling</p>
+                <h3 class="portfolio-title">Radio Studio Setup</h3>
+                <p class="portfolio-category">Product Texturing & Lighting</p>
+                <p class="portfolio-description">3D studio setting for premium product showcase</p>
             </div>
         </div>
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1622737133809-d95047b9e673?w=1000&q=80" alt="3D Architecture" class="portfolio-image">
+            <img src="images/image3.jpg" alt="Vintage TV Product Modeling" class="portfolio-image">
             <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Futuristic City</h3>
-                <p class="portfolio-category">Architectural Visualization</p>
+                <h3 class="portfolio-title">Vintage Television</h3>
+                <p class="portfolio-category">Product Modeling</p>
+                <p class="portfolio-description">1960s-inspired TV for Independence Project scenes</p>
             </div>
         </div>
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1000&q=80" alt="3D Product Design" class="portfolio-image">
+            <img src="images/image4.jpg" alt="Vintage TV Independence Scene" class="portfolio-image">
             <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Concept Vehicle</h3>
+                <h3 class="portfolio-title">Independence Scene</h3>
+                <p class="portfolio-category">Cinematic Lighting</p>
+                <p class="portfolio-description">Dramatic directional lighting for vintage TV setup</p>
+            </div>
+        </div>
+        <div class="portfolio-item">
+            <img src="images/image5.jpg" alt="Wine 3D Product Visualization" class="portfolio-image">
+            <div class="portfolio-overlay">
+                <h3 class="portfolio-title">Wine Bottle</h3>
                 <p class="portfolio-category">Product Visualization</p>
+                <p class="portfolio-description">Premium brand visualization with modeling, texturing & lighting</p>
             </div>
         </div>
         <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=1000&q=80" alt="3D Crystal" class="portfolio-image">
+            <img src="images/image6.jpg" alt="3D Independence Scene" class="portfolio-image">
             <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Crystal Formation</h3>
-                <p class="portfolio-category">3D Modeling</p>
-            </div>
-        </div>
-        <div class="portfolio-item">
-            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=1000&q=80" alt="3D Environment" class="portfolio-image">
-            <div class="portfolio-overlay">
-                <h3 class="portfolio-title">Alien Landscape</h3>
+                <h3 class="portfolio-title">Independence Story</h3>
                 <p class="portfolio-category">Environment Design</p>
+                <p class="portfolio-description">Cinematic scene with dramatic lighting for storytelling</p>
             </div>
         </div>
     </div>
 </section>
-
-
-    <!-- Cinematic Section -->
-<section id="cinematic" class="cinematic">
-    <h2 class="section-title">Cinematic Projects</h2>
-    <div class="cinematic-grid">
-        <div class="cinematic-item" data-video="https://www.youtube.com/embed/dQw4w9WgXcQ">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="3D Architectural Visualization" class="video-thumbnail">
-            <div class="video-overlay">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
-                </div>
-            </div>
-        </div>
-        <div class="cinematic-item" data-video="https://www.youtube.com/embed/jNQXAC9IVRw">
-            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="3D Character Animation" class="video-thumbnail">
-            <div class="video-overlay">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
-                </div>
-            </div>
-        </div>
-        <div class="cinematic-item" data-video="https://www.youtube.com/embed/L_jWHffIx5E">
-            <img src="https://images.unsplash.com/photo-1550684376-efcbd6e3f031?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="3D Product Visualization" class="video-thumbnail">
-            <div class="video-overlay">
-                <div class="play-button">
-                    <i class="fas fa-play"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-    <!-- Creative Direction Section -->
-<section id="creative" class="creative">
-    <h2 class="section-title">Creative Direction</h2>
-    <div class="creative-showcase">
-        <div class="creative-item">
-            <div class="creative-visual">
-                <!-- Project visual placeholder -->
-                <div class="project-visual">
-                    <div class="visual-container">
-                        <div class="placeholder-image cyberpunk">
-                            <div class="image-overlay">
-                                <span class="project-type">3D Environment</span>
-                                <div class="tech-tags">
-                                    <span class="tag">Blender</span>
-                                    <span class="tag">Substance Painter</span>
-                                    <span class="tag">Unreal Engine</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="visual-caption">
-                        <p>Click to view full project</p>
+    <!-- Videos Section -->
+    <section id="videos" class="videos">
+        <h2 class="section-title">Video Showcase</h2>
+        <div class="videos-grid">
+            <!-- Video 1 -->
+            <div class="video-item">
+                <img src="images/thumbnail1.png" alt="3D Project Showcase 1" class="video-thumbnail">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
+                <video class="video-player" controls controlsList="nodownload">
+                    <source src="images/video11.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div class="creative-content">
-                <h3>Neo-Tokyo Reimagined</h3>
-                <p>This project involved creating a futuristic interpretation of Tokyo for an upcoming cyberpunk game. The challenge was to balance familiar elements with futuristic enhancements.</p>
-                <p>My role as creative director included concept development, art direction, and overseeing a team of 15 artists to ensure visual consistency across all assets.</p>
-            </div>
-        </div>
-        <div class="creative-item">
-            <div class="creative-visual">
-                <!-- Project visual placeholder -->
-                <div class="project-visual">
-                    <div class="visual-container">
-                        <div class="placeholder-image fantasy">
-                            <div class="image-overlay">
-                                <span class="project-type">World Building</span>
-                                <div class="tech-tags">
-                                    <span class="tag">Maya</span>
-                                    <span class="tag">ZBrush</span>
-                                    <span class="tag">Substance Designer</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="visual-caption">
-                        <p>Click to view full project</p>
+
+            <!-- Video 2 -->
+            <div class="video-item">
+                <img src="images/thumbnail2.png" alt="3D Project Showcase 2" class="video-thumbnail">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
                     </div>
                 </div>
+                <video class="video-player" controls controlsList="nodownload">
+                    <source src="images/video2.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
-            <div class="creative-content">
-                <h3>Mythical Realms</h3>
-                <p>A fantasy world-building project for a major film studio. The goal was to create a believable yet magical environment that would serve as the backdrop for an epic adventure.</p>
-                <p>I led the design team in developing unique flora, fauna, and architectural styles that reflected the world's mythology and history.</p>
+
+            <!-- Video 3 - Uncomment to add more videos -->
+            <!-- 
+            <div class="video-item">
+                <img src="images/video3-thumbnail.jpg" alt="3D Project Showcase 3" class="video-thumbnail">
+                <div class="video-overlay">
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <video class="video-player" controls controlsList="nodownload">
+                    <source src="images/video3.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
+            -->
         </div>
-    </div>
-</section>
-
-
-
+    </section>
     <!-- Process Section -->
     <section id="process" class="process">
         <h2 class="section-title">My Process</h2>
@@ -1154,118 +1247,124 @@
         </div>
     </section>
 
- <!-- Clients Section -->
-        <section class="clients">
-            <h2 class="section-title">Clients & Collaborations</h2>
-            <div class="clients-grid">
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M10,10 L30,10 L30,30 L10,30 Z" fill="#FF0000"/>
-                        <path d="M40,10 L60,10 L60,30 L40,30 Z" fill="#00FF00"/>
-                        <path d="M70,10 L90,10 L90,30 L70,30 Z" fill="#0000FF"/>
-                        <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Adobe</text>
-                    </svg>
-                </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20,10 L80,10 L80,20 L20,20 Z" fill="#C70039"/>
-                        <path d="M20,20 L80,20 L80,30 L20,30 Z" fill="#C70039"/>
-                        <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Autodesk</text>
-                    </svg>
-                </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="50" cy="20" r="15" fill="#FF7A00"/>
-                        <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Blender</text>
-                    </svg>
-                </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="10" y="10" width="80" height="20" fill="#7F00FF" rx="5"/>
-                        <text x="50" y="25" text-anchor="middle" fill="white" font-size="8">Epic Games</text>
-                    </svg>
-                </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <polygon points="50,10 80,30 50,30 20,30" fill="#00A8FF"/>
-                        <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Foundry</text>
-                    </svg>
-                </div>
-                <div class="client-logo">
-                    <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20,10 L40,30 L60,10 L80,30 L60,30 L40,10 L20,30 Z" fill="#00D2FF"/>
-                        <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">SideFX</text>
-                    </svg>
-                </div>
+    <!-- Clients Section -->
+    <section class="clients">
+        <h2 class="section-title">Clients & Collaborations</h2>
+        <div class="clients-grid">
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10,10 L30,10 L30,30 L10,30 Z" fill="#FF0000"/>
+                    <path d="M40,10 L60,10 L60,30 L40,30 Z" fill="#00FF00"/>
+                    <path d="M70,10 L90,10 L90,30 L70,30 Z" fill="#0000FF"/>
+                    <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Adobe</text>
+                </svg>
             </div>
-        </section>
-
-   <!-- Contact Section -->
-<section id="contact" class="contact">
-    <div class="contact-form">
-        <h2 class="section-title">Get In Touch</h2>
-        <form id="contact-form">
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" required>
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,10 L80,10 L80,20 L20,20 Z" fill="#C70039"/>
+                    <path d="M20,20 L80,20 L80,30 L20,30 Z" fill="#C70039"/>
+                    <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Autodesk</text>
+                </svg>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="20" r="15" fill="#FF7A00"/>
+                    <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Blender</text>
+                </svg>
             </div>
-            <div class="form-group">
-                <label for="subject">Subject</label>
-                <input type="text" id="subject" required>
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="10" width="80" height="20" fill="#7F00FF" rx="5"/>
+                    <text x="50" y="25" text-anchor="middle" fill="white" font-size="8">Epic Games</text>
+                </svg>
             </div>
-            <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" required></textarea>
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="50,10 80,30 50,30 20,30" fill="#00A8FF"/>
+                    <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">Foundry</text>
+                </svg>
             </div>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
-    </div>
-    <div class="contact-info">
-        <h3>Let's Create Something Amazing Together</h3>
-        <div class="contact-details">
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div>
-                    <h4>Email</h4>
-                    <p>peterpaira43@gmail.com</p>
-                </div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div>
-                    <h4>Phone</h4>
-                    <p>+256 756 143976</p>
-                </div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fab fa-youtube"></i>
-                </div>
-                <div>
-                    <h4>YouTube</h4>
-                    <p>@pairaart.6</p>
-                </div>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <i class="fab fa-pinterest"></i>
-                </div>
-                <div>
-                    <h4>Pinterest</h4>
-                    <p>Peter Paira</p>
-                </div>
+            <div class="client-logo">
+                <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20,10 L40,30 L60,10 L80,30 L60,30 L40,10 L20,30 Z" fill="#00D2FF"/>
+                    <text x="50" y="38" text-anchor="middle" fill="white" font-size="8">SideFX</text>
+                </svg>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-form">
+            <h2 class="section-title">Get In Touch</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-info">
+            <h3>Let's Create Something Amazing Together</h3>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>peterpaira43@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+256 756 143976</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div>
+                        <h4>YouTube</h4>
+                        <p>@pairaart.6</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-pinterest"></i>
+                    </div>
+                    <div>
+                        <h4>Pinterest</h4>
+                        <p>Peter Paira</p>
+                    </div>
+                </div>
+            </div>
+            <div class="resume-download">
+                <a href="images/RESUME-.jpg" class="resume-btn" download>
+                    <i class="fas fa-download"></i>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -1285,8 +1384,7 @@
                 <div class="footer-links">
                     <a href="#about">About</a>
                     <a href="#portfolio">Portfolio</a>
-                    <a href="#cinematic">Cinematic</a>
-                    <a href="#creative">Creative Direction</a>
+                    <a href="#videos">Videos</a>
                     <a href="#process">Process</a>
                 </div>
             </div>
@@ -1296,8 +1394,7 @@
                     <a href="#">3D Modeling</a>
                     <a href="#">Environment Design</a>
                     <a href="#">Character Design</a>
-                    <a href="#">Cinematic Direction</a>
-                    <a href="#">Creative Consulting</a>
+                    <a href="#">Product Visualization</a>
                 </div>
             </div>
         </div>
@@ -1380,25 +1477,51 @@
                 nav.classList.remove('scrolled');
             }
         });
-        // Video modal
-        const playButtons = document.querySelectorAll('.play-button');
-        const videoModal = document.getElementById('video-modal');
-        const modalVideo = document.getElementById('modal-video');
-        const modalClose = document.querySelector('.modal-close');
-
-        playButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const videoSrc = button.closest('.cinematic-item').getAttribute('data-video');
-                modalVideo.src = videoSrc;
-                videoModal.classList.add('active');
+        // Professional Video Player Handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoItems = document.querySelectorAll('.video-item');
+            
+            videoItems.forEach(item => {
+                const playButton = item.querySelector('.play-button');
+                const thumbnail = item.querySelector('.video-thumbnail');
+                const overlay = item.querySelector('.video-overlay');
+                const videoPlayer = item.querySelector('.video-player');
+                
+                // Play video when clicking play button or overlay
+                const playVideo = function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Hide thumbnail and overlay
+                    thumbnail.classList.add('hidden');
+                    overlay.classList.add('hidden');
+                    
+                    // Show and play video
+                    videoPlayer.classList.add('active');
+                    videoPlayer.play();
+                };
+                
+                playButton.addEventListener('click', playVideo);
+                overlay.addEventListener('click', playVideo);
+                
+                // Reset when video ends
+                videoPlayer.addEventListener('ended', function() {
+                    thumbnail.classList.remove('hidden');
+                    overlay.classList.remove('hidden');
+                    videoPlayer.classList.remove('active');
+                    videoPlayer.currentTime = 0;
+                });
+                
+                // Handle video pause to show controls
+                videoPlayer.addEventListener('pause', function() {
+                    if (videoPlayer.currentTime === 0 || videoPlayer.ended) {
+                        thumbnail.classList.remove('hidden');
+                        overlay.classList.remove('hidden');
+                        videoPlayer.classList.remove('active');
+                    }
+                });
             });
         });
-
-        modalClose.addEventListener('click', () => {
-            videoModal.classList.remove('active');
-            modalVideo.src = '';
-        });
-
         // Contact form submission
         const contactForm = document.getElementById('contact-form');
         contactForm.addEventListener('submit', (e) => {
@@ -1580,28 +1703,13 @@
             });
         });
 
-        // Animate cinematic items
-        gsap.utils.toArray('.cinematic-item').forEach((item, i) => {
+        // Animate video items
+        gsap.utils.toArray('.video-item').forEach((item, i) => {
             gsap.to(item, {
                 opacity: 1,
                 y: 0,
                 duration: 0.8,
                 delay: i * 0.1,
-                scrollTrigger: {
-                    trigger: item,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                }
-            });
-        });
-
-        // Animate creative items
-        gsap.utils.toArray('.creative-item').forEach((item, i) => {
-            gsap.to(item, {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                delay: i * 0.2,
                 scrollTrigger: {
                     trigger: item,
                     start: 'top 85%',
